@@ -1,0 +1,72 @@
+﻿<Window x:Class="Ledger8.DesktopUI.Views.PopupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ledger8.DesktopUI.ViewModels"
+        xmlns:li="clr-namespace:Ledger8.DesktopUI.Infrastructure"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:PopupViewModel, IsDesignTimeCreatable=false}"
+        li:DialogCloser.DialogResult="{Binding DialogResult}" Icon="{Binding WindowIcon}"
+        Title="{Binding Title}" Height="600" Width="800" MaxHeight="600" MaxWidth="{Binding MaxWidth}"
+        SizeToContent="WidthAndHeight" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="{Binding Icon}" Visibility="{Binding IconVisibility}" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center" Height="64" Stretch="Uniform"/>
+            <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="{Binding MajorText}" TextWrapping="Wrap" 
+                       TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
+                       FontSize="{Binding MajorFontSize}" ToolTip="{Binding MajorText}" 
+                       HorizontalAlignment="Center"/>
+        </Grid>
+        <TextBlock Grid.Row="1" Margin="5" Text="{Binding MinorText}" TextWrapping="Wrap" 
+                   TextTrimming="CharacterEllipsis" FontSize="{Binding MinorFontSize}" 
+                   ToolTip="{Binding MinorText}" Visibility="{Binding MinorVisibility}"/>
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding YesWidth}"/>
+                <ColumnDefinition Width="{Binding NoWidth}"/>
+                <ColumnDefinition Width="{Binding OkWidth}"/>
+                <ColumnDefinition Width="{Binding Cancelwidth}"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Center" Command="{Binding YesCommand}" Name="btnYes" 
+                    Width="{Binding ButtonWidth}" IsDefault="{Binding  YesDefault}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding YesIcon}" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="{Binding YesText}"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center" Command="{Binding NoCommand}" Name="btnNo" 
+                    Width="{Binding ButtonWidth}" IsCancel="{Binding NoCancel}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding NoIcon}" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="{Binding NoText}"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" HorizontalAlignment="Center" Command="{Binding OkCommand}" Name="btnOK" 
+                    Width="{Binding ButtonWidth}" IsDefault="{Binding OkDefault}" IsCancel="{Binding OkCancel}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding OkIcon}" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="{Binding OkText}"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="3" HorizontalAlignment="Center" Command="{Binding CancelCommand}" 
+                    Width="{Binding ButtonWidth}" IsCancel="{Binding CancelCancel}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding CancelIcon}" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="{Binding CancelText}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

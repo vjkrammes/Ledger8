@@ -1,0 +1,57 @@
+﻿<Window x:Class="Ledger8.DesktopUI.Views.AccountSummaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ledger8.DesktopUI.ViewModels"
+        xmlns:li="clr-namespace:Ledger8.DesktopUI.Infrastructure"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AccountSummaryViewModel, IsDesignTimeCreatable=False}" Icon="/resources/info-32.png"
+        li:DialogCloser.DialogResult="{Binding DialogResult}" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize"
+        Title="Account Summary" Height="800" Width="1300">
+    <Window.Resources>
+        <li:DateToStringConverter x:Key="DateConverter" />
+        <li:DecimalToDisplayConverter x:Key="MoneyConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{DynamicResource BannerBorder}">
+            <TextBlock Style="{DynamicResource BannerText}" Text="Account Summary"/>
+        </Border>
+        <Button Grid.Row="1" Margin="5" HorizontalAlignment="Left" Command="{Binding ToggleHiddenCommand}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding ButtonIcon}" Margin="1" Height="16" />
+                <TextBlock Margin="1,1,3,1" Text="{Binding ButtonContent}" />
+            </StackPanel>
+        </Button>
+        <ListView Grid.Row="2" Margin="5" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount, Mode=TwoWay,
+                  UpdateSourceTrigger=PropertyChanged}" AlternationCount="2" Style="{DynamicResource AlternatingListView}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Company" DisplayMemberBinding="{Binding Company}" Width="auto"/>
+                    <GridViewColumn Header="Account Type" DisplayMemberBinding="{Binding AccountType}" Width="auto"/>
+                    <GridViewColumn Header="Account Number" DisplayMemberBinding="{Binding AccountNumber}" Width="auto"/>
+                    <GridViewColumn Header="Due Date" DisplayMemberBinding="{Binding DueDate}" Width="auto"/>
+                    <GridViewColumn Header="Last Transaction" DisplayMemberBinding="{Binding LastTransaction, Converter={StaticResource DateConverter}}"
+                                    Width="auto"/>
+                    <GridViewColumn Header="Last Balance" DisplayMemberBinding="{Binding LastBalance, Converter={StaticResource MoneyConverter}}" Width="auto"/>
+                    <GridViewColumn Header="Last Payment" DisplayMemberBinding="{Binding LastPayment, Converter={StaticResource MoneyConverter}}" Width="auto"/>
+                    <GridViewColumn Header="Last Reference" DisplayMemberBinding="{Binding LastReference}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Grid.Row="3" Margin="5" HorizontalAlignment="Center" IsDefault="True" IsCancel="True" Command="{Binding CancelCommand}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Margin="1" Source="/resources/checkmark-32.png" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="Done"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</Window>

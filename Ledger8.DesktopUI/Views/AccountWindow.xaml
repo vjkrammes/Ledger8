@@ -1,0 +1,115 @@
+﻿<Window x:Class="Ledger8.DesktopUI.Views.AccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ledger8.DesktopUI.ViewModels"
+        xmlns:li="clr-namespace:Ledger8.DesktopUI.Infrastructure"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AccountViewModel, IsDesignTimeCreatable=False}" Icon="/resources/book-32.png"
+        li:DialogCloser.DialogResult="{Binding DialogResult}" FocusManager.FocusedElement="{Binding ElementName=TBNumber}"
+        Title="Accounts" Height="350" Width="500" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner"
+        SizeToContent="Height">
+    <Window.Resources>
+        <li:IdToNumberConverter x:Key="NumberConverter" />
+        <li:DueDateTypeConverter x:Key="DDTConverter" />
+        <li:BoolToInverseConverter x:Key="InverseConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{DynamicResource BannerBorder}">
+            <TextBlock Style="{DynamicResource BannerText}" Text="Add or Edit an Account"/>
+        </Border>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Company:"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Company.Name}"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Account Type:"/>
+        <Grid Grid.Row="2" Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding AccountTypes}" SelectedValue="{Binding SelectedAccountType, Mode=TwoWay, 
+                      UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Description"/>
+            <Button Grid.Column="1" Margin="5,0,0,0" Command="{Binding ManageTypesCommand}" ToolTip="Manage Account Types">
+                <Image Source="/resources/ellipsis-32.png" Margin="1" Height="14"/>
+            </Button>
+        </Grid>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Number:"/>
+        <Grid Grid.Row="3" Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Name="TBNumber" IsEnabled="{Binding IsEditing, Converter={StaticResource InverseConverter}}"/>
+            <Button Grid.Column="1" Margin="5,0,0,0" Visibility="{Binding NANButtonVisibility}" ToolTip="Change Account Number"
+                    Command="{Binding ChangeNumberCommand}">
+                <Image Source="/resources/edit-32.png" Margin="1" Height="14"/>
+            </Button>
+        </Grid>
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="Due Date Type:"/>
+        <Grid Grid.Row="4" Grid.Column="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{Binding DueDateTypes}" SelectedValue="{Binding SelectedDueDateType, Mode=TwoWay,
+                      UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsPayable}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource DDTConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Grid.Column="1" Margin="5,0,0,0" Text="Month:"/>
+            <TextBox Grid.Column="2" Margin="5,0,0,0" Text="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, 
+                     Converter={StaticResource NumberConverter}}" IsEnabled="{Binding IsPayable}"/>
+            <TextBlock Grid.Column="3" Margin="5,0,0,0" Text="Day:"/>
+            <TextBox Grid.Column="4" Margin="5,0,0,0" Text="{Binding Day, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                     Converter={StaticResource NumberConverter}}" IsEnabled="{Binding IsPayable}"/>
+        </Grid>
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="5" Text="Payable:"/>
+        <CheckBox Grid.Row="5" Grid.Column="1" Margin="5" IsChecked="{Binding IsPayable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Margin="5" Text="Comments:"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="5" Text="{Binding Comments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Margin="5" Text="Tag:"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Text="{Binding Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Center" Command="{Binding OkCommand}" IsDefault="True"
+                    Width="{Binding ActualWidth, ElementName=btnCancel}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/resources/checkmark-32.png" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="OK"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center" Command="{Binding CancelCommand}" IsCancel="True"
+                    Name="btnCancel">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/resources/cancel-32.png" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="Cancel"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

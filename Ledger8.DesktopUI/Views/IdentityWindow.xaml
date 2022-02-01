@@ -1,0 +1,95 @@
+﻿<Window x:Class="Ledger8.DesktopUI.Views.IdentityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ledger8.DesktopUI.ViewModels"
+        xmlns:li="clr-namespace:Ledger8.DesktopUI.Infrastructure"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:IdentityViewModel, IsDesignTimeCreatable=False}" Icon="/resources/user-32.png"
+        li:DialogCloser.DialogResult="{Binding DialogResult}" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" SizeToContent="Height"
+        Title="Identity" Height="400" Width="500" WindowStartupLocation="CenterOwner" FocusManager.FocusedElement="{Binding ElementName=TBURL}"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <li:ShowPasswordToButtonTextConverter x:Key="ButtonConverter" />
+        <li:VisibilityToInverseConverter x:Key="VisibilityInverter" />
+        <li:PasswordStrengthConverter x:Key="StrengthConverter" />
+        <li:PasswordStrengthToForegroundConverter x:Key="ColorConverter" />
+    </Window.Resources>
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" SharedSizeGroup="Left"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{DynamicResource BannerBorder}">
+            <TextBlock Style="{DynamicResource BannerText}" Text="Add or Edit an Identity"/>
+        </Border>
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Company:"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Company.Name}"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="URL:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding URL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Name="TBURL"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="User ID:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding UserId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" SharedSizeGroup="Left"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Password:"/>
+            <PasswordBox Grid.Row="0" Grid.Column="1" Name="PBPassword1" PasswordChanged="PBPassword1_PasswordChanged"
+                         PasswordChar="♦" Visibility="{Binding Password2Visibility}"/>
+            <!-- The show/hide password button flips between the password box above, and the text box below -->
+            <TextBox Grid.Row="0" Grid.Column="1" Name="tbPassword1" Text="{Binding Password1, Mode=TwoWay, 
+                     UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding Password2Visibility, 
+                     Converter={StaticResource VisibilityInverter}}"/>
+            <Button Grid.Row="0" Grid.Column="2" Command="{Binding TogglePasswordCommand}" Width="40" Margin="5,0,0,0"
+                    Content="{Binding ShowPassword, Converter={StaticResource ButtonConverter}}"
+                    KeyboardNavigation.IsTabStop="False"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5" Text="Strength:"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,5" Text="{Binding PasswordStrength, 
+                       Converter={StaticResource StrengthConverter}}" Foreground="{Binding PasswordStrength, 
+                       Converter={StaticResource ColorConverter}}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,5" Text="Re-Enter:" Visibility="{Binding Password2Visibility}"/>
+            <PasswordBox Grid.Row="2" Grid.Column="1" Margin="0,5" Name="PBPassword2" PasswordChanged="PBPassword2_PasswordChanged"
+                         PasswordChar="♦" Visibility="{Binding Password2Visibility}"/>
+        </Grid>
+        <TextBlock Grid.Row="5" Grid.Column="0" Margin="5" Text="Tag:" />
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding Tag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" HorizontalAlignment="Center" Command="{Binding OkCommand}" IsDefault="True"
+                    Width="{Binding ActualWidth, ElementName=btnCancel}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/resources/checkmark-32.png" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="OK"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center" Command="{Binding CancelCommand}" IsCancel="True"
+                    Name="btnCancel">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/resources/cancel-32.png" Margin="1" Height="16"/>
+                    <TextBlock Margin="1,1,3,1" Text="Cancel"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

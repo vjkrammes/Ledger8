@@ -1,0 +1,284 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>true</UseWPF>
+		<Authors>V. James Krammes</Authors>
+		<Company>VJK Solutions, LLC</Company>
+		<Product>Ledger8</Product>
+		<Description>
+			This is the windows desktop user interface for the Ledger8
+			project using WPF
+		</Description>
+		<Copyright>© Copyright 2019-2022 VJK Solutions, LLC. All Rights Reserved.</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="resources\about-26.png" />
+		<None Remove="resources\add-32.png" />
+		<None Remove="resources\all-32.png" />
+		<None Remove="resources\anchor-32.png" />
+		<None Remove="resources\apple-32.png" />
+		<None Remove="resources\archive-32.png" />
+		<None Remove="resources\attachment-32.png" />
+		<None Remove="resources\backup-database-32.png" />
+		<None Remove="resources\book-32.png" />
+		<None Remove="resources\book-512.png" />
+		<None Remove="resources\calc-32.png" />
+		<None Remove="resources\calendar-32.png" />
+		<None Remove="resources\cancel-32.png" />
+		<None Remove="resources\car-32.png" />
+		<None Remove="resources\cart-32.png" />
+		<None Remove="resources\cat-32.png" />
+		<None Remove="resources\checkmark-32.png" />
+		<None Remove="resources\clear-32.png" />
+		<None Remove="resources\clipboard-32.png" />
+		<None Remove="resources\clothing-32.png" />
+		<None Remove="resources\coins-32.png" />
+		<None Remove="resources\company-32.png" />
+		<None Remove="resources\computer-32.png" />
+		<None Remove="resources\copy-32.png" />
+		<None Remove="resources\dagger-32.png" />
+		<None Remove="resources\device-32.png" />
+		<None Remove="resources\dish-32.png" />
+		<None Remove="resources\document-32.png" />
+		<None Remove="resources\dotlist-32.png" />
+		<None Remove="resources\edit-32.png" />
+		<None Remove="resources\ellipsis-32.png" />
+		<None Remove="resources\envelope-32.png" />
+		<None Remove="resources\eraser-32.png" />
+		<None Remove="resources\error-512.png" />
+		<None Remove="resources\excel-32.png" />
+		<None Remove="resources\exclamation-32.png" />
+		<None Remove="resources\exit-32.png" />
+		<None Remove="resources\firewall-32.png" />
+		<None Remove="resources\flash-32.png" />
+		<None Remove="resources\folder-32.png" />
+		<None Remove="resources\gauge-32.png" />
+		<None Remove="resources\glasses-32.png" />
+		<None Remove="resources\graph-32.png" />
+		<None Remove="resources\group-32.png" />
+		<None Remove="resources\gs\Account.PNG" />
+		<None Remove="resources\gs\AccountType.PNG" />
+		<None Remove="resources\gs\Company.PNG" />
+		<None Remove="resources\gs\copypw.PNG" />
+		<None Remove="resources\gs\newidentity.PNG" />
+		<None Remove="resources\hand-32.png" />
+		<None Remove="resources\height-32.png" />
+		<None Remove="resources\home-32.png" />
+		<None Remove="resources\image-32.png" />
+		<None Remove="resources\import-32.png" />
+		<None Remove="resources\info-32.png" />
+		<None Remove="resources\info-512.png" />
+		<None Remove="resources\info-outline-32.png" />
+		<None Remove="resources\inkwell-32.png" />
+		<None Remove="resources\item-32.png" />
+		<None Remove="resources\key-32.png" />
+		<None Remove="resources\key-640.png" />
+		<None Remove="resources\large-32.png" />
+		<None Remove="resources\link-32.png" />
+		<None Remove="resources\lock-32.png" />
+		<None Remove="resources\map-32.png" />
+		<None Remove="resources\medium-32.png" />
+		<None Remove="resources\memory-24.png" />
+		<None Remove="resources\minus-32.png" />
+		<None Remove="resources\mirror-32.png" />
+		<None Remove="resources\money-32.png" />
+		<None Remove="resources\moneybag-32.png" />
+		<None Remove="resources\network-32.png" />
+		<None Remove="resources\note-32.png" />
+		<None Remove="resources\pagedown-32.png" />
+		<None Remove="resources\pageup-32.png" />
+		<None Remove="resources\pallette-32.png" />
+		<None Remove="resources\pepper-32.png" />
+		<None Remove="resources\phone-32.png" />
+		<None Remove="resources\plus-32.png" />
+		<None Remove="resources\printer-32.png" />
+		<None Remove="resources\project-32.png" />
+		<None Remove="resources\protocol-32.png" />
+		<None Remove="resources\pulse-32.png" />
+		<None Remove="resources\question-32.png" />
+		<None Remove="resources\question-512.png" />
+		<None Remove="resources\recycle-32.png" />
+		<None Remove="resources\remove-32.png" />
+		<None Remove="resources\route-30.png" />
+		<None Remove="resources\save-32.png" />
+		<None Remove="resources\script-32.png" />
+		<None Remove="resources\search-32.png" />
+		<None Remove="resources\server-64.png" />
+		<None Remove="resources\settings-32.png" />
+		<None Remove="resources\shield-32.png" />
+		<None Remove="resources\skull-32.png" />
+		<None Remove="resources\small-32.png" />
+		<None Remove="resources\spanner-32.png" />
+		<None Remove="resources\star-32.png" />
+		<None Remove="resources\start-64.png" />
+		<None Remove="resources\stop-512.png" />
+		<None Remove="resources\store-32.png" />
+		<None Remove="resources\tags-32.png" />
+		<None Remove="resources\target-32.png" />
+		<None Remove="resources\theater-32.png" />
+		<None Remove="resources\thumbs-down-32.png" />
+		<None Remove="resources\thumbs-up-32.png" />
+		<None Remove="resources\ticket-32.png" />
+		<None Remove="resources\time-32.png" />
+		<None Remove="resources\user-32.png" />
+		<None Remove="resources\utensils-32.png" />
+		<None Remove="resources\view-32.png" />
+		<None Remove="resources\wand-32.png" />
+		<None Remove="resources\warning-32.png" />
+		<None Remove="resources\warning-512.png" />
+		<None Remove="resources\wifi-32.png" />
+		<None Remove="resources\x-32.png" />
+		<None Remove="resources\yin-yang-45.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Ledger8.Common\Ledger8.Common.csproj" />
+		<ProjectReference Include="..\Ledger8.Models\Ledger8.Models.csproj" />
+		<ProjectReference Include="..\Ledger8.Services\Ledger8.Services.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="resources\about-26.png" />
+		<Resource Include="resources\add-32.png" />
+		<Resource Include="resources\all-32.png" />
+		<Resource Include="resources\anchor-32.png" />
+		<Resource Include="resources\apple-32.png" />
+		<Resource Include="resources\archive-32.png" />
+		<Resource Include="resources\attachment-32.png" />
+		<Resource Include="resources\backup-database-32.png" />
+		<Resource Include="resources\book-32.png" />
+		<Resource Include="resources\book-512.png" />
+		<Resource Include="resources\calc-32.png" />
+		<Resource Include="resources\calendar-32.png" />
+		<Resource Include="resources\cancel-32.png" />
+		<Resource Include="resources\car-32.png" />
+		<Resource Include="resources\cart-32.png" />
+		<Resource Include="resources\cat-32.png" />
+		<Resource Include="resources\checkmark-32.png" />
+		<Resource Include="resources\clear-32.png" />
+		<Resource Include="resources\clipboard-32.png" />
+		<Resource Include="resources\clothing-32.png" />
+		<Resource Include="resources\coins-32.png" />
+		<Resource Include="resources\company-32.png" />
+		<Resource Include="resources\computer-32.png" />
+		<Resource Include="resources\copy-32.png" />
+		<Resource Include="resources\dagger-32.png" />
+		<Resource Include="resources\device-32.png" />
+		<Resource Include="resources\dish-32.png" />
+		<Resource Include="resources\document-32.png" />
+		<Resource Include="resources\dotlist-32.png" />
+		<Resource Include="resources\edit-32.png" />
+		<Resource Include="resources\ellipsis-32.png" />
+		<Resource Include="resources\envelope-32.png" />
+		<Resource Include="resources\eraser-32.png" />
+		<Resource Include="resources\error-512.png" />
+		<Resource Include="resources\excel-32.png" />
+		<Resource Include="resources\exclamation-32.png" />
+		<Resource Include="resources\exit-32.png" />
+		<Resource Include="resources\firewall-32.png" />
+		<Resource Include="resources\flash-32.png" />
+		<Resource Include="resources\folder-32.png" />
+		<Resource Include="resources\gauge-32.png" />
+		<Resource Include="resources\glasses-32.png" />
+		<Resource Include="resources\graph-32.png" />
+		<Resource Include="resources\group-32.png" />
+		<Resource Include="resources\gs\Account.PNG" />
+		<Resource Include="resources\gs\AccountType.PNG" />
+		<Resource Include="resources\gs\Company.PNG" />
+		<Resource Include="resources\gs\copypw.PNG" />
+		<Resource Include="resources\gs\newidentity.PNG" />
+		<Resource Include="resources\hand-32.png" />
+		<Resource Include="resources\height-32.png" />
+		<Resource Include="resources\home-32.png" />
+		<Resource Include="resources\image-32.png" />
+		<Resource Include="resources\import-32.png" />
+		<Resource Include="resources\info-32.png" />
+		<Resource Include="resources\info-512.png" />
+		<Resource Include="resources\info-outline-32.png" />
+		<Resource Include="resources\inkwell-32.png" />
+		<Resource Include="resources\item-32.png" />
+		<Resource Include="resources\key-32.png" />
+		<Resource Include="resources\key-640.png" />
+		<Resource Include="resources\large-32.png" />
+		<Resource Include="resources\link-32.png" />
+		<Resource Include="resources\lock-32.png" />
+		<Resource Include="resources\map-32.png" />
+		<Resource Include="resources\medium-32.png" />
+		<Resource Include="resources\memory-24.png" />
+		<Resource Include="resources\minus-32.png" />
+		<Resource Include="resources\mirror-32.png" />
+		<Resource Include="resources\money-32.png" />
+		<Resource Include="resources\moneybag-32.png" />
+		<Resource Include="resources\network-32.png" />
+		<Resource Include="resources\note-32.png" />
+		<Resource Include="resources\pagedown-32.png" />
+		<Resource Include="resources\pageup-32.png" />
+		<Resource Include="resources\pallette-32.png" />
+		<Resource Include="resources\pepper-32.png" />
+		<Resource Include="resources\phone-32.png" />
+		<Resource Include="resources\plus-32.png" />
+		<Resource Include="resources\printer-32.png" />
+		<Resource Include="resources\project-32.png" />
+		<Resource Include="resources\protocol-32.png" />
+		<Resource Include="resources\pulse-32.png" />
+		<Resource Include="resources\question-32.png" />
+		<Resource Include="resources\question-512.png" />
+		<Resource Include="resources\recycle-32.png" />
+		<Resource Include="resources\remove-32.png" />
+		<Resource Include="resources\route-30.png" />
+		<Resource Include="resources\save-32.png" />
+		<Resource Include="resources\script-32.png" />
+		<Resource Include="resources\search-32.png" />
+		<Resource Include="resources\server-64.png" />
+		<Resource Include="resources\settings-32.png" />
+		<Resource Include="resources\shield-32.png" />
+		<Resource Include="resources\skull-32.png" />
+		<Resource Include="resources\small-32.png" />
+		<Resource Include="resources\spanner-32.png" />
+		<Resource Include="resources\star-32.png" />
+		<Resource Include="resources\start-64.png" />
+		<Resource Include="resources\stop-512.png" />
+		<Resource Include="resources\store-32.png" />
+		<Resource Include="resources\tags-32.png" />
+		<Resource Include="resources\target-32.png" />
+		<Resource Include="resources\theater-32.png" />
+		<Resource Include="resources\thumbs-down-32.png" />
+		<Resource Include="resources\thumbs-up-32.png" />
+		<Resource Include="resources\ticket-32.png" />
+		<Resource Include="resources\time-32.png" />
+		<Resource Include="resources\user-32.png" />
+		<Resource Include="resources\utensils-32.png" />
+		<Resource Include="resources\view-32.png" />
+		<Resource Include="resources\wand-32.png" />
+		<Resource Include="resources\warning-32.png" />
+		<Resource Include="resources\warning-512.png" />
+		<Resource Include="resources\wifi-32.png" />
+		<Resource Include="resources\x-32.png" />
+		<Resource Include="resources\yin-yang-45.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="AppSettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

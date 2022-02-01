@@ -1,0 +1,75 @@
+﻿<Window x:Class="Ledger8.DesktopUI.Views.GettingStartedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Ledger8.DesktopUI.ViewModels"
+        xmlns:li="clr-namespace:Ledger8.DesktopUI.Infrastructure"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:GettingStartedViewModel, IsDesignTimeCreatable=True}" Icon="/resources/start-64.png"
+        li:DialogCloser.DialogResult="{Binding DialogResult}"
+        Title="Gettin Started with Ledger" Height="800" Width="1024" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" SizeToContent="Height">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Style="{DynamicResource BannerBorder}">
+            <TextBlock Style="{DynamicResource BannerText}" Text="Getting Started with Ledger" />
+        </Border>
+        <FlowDocumentScrollViewer Grid.Row="1" Margin="5" VerticalScrollBarVisibility="Auto">
+            <FlowDocument>
+                <List MarkerOffset="25" MarkerStyle="Decimal" StartIndex="1">
+                    <ListItem Margin="30,5,5,5">
+                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="Blue">Create Account Type(s)</Paragraph>
+                        <BlockUIContainer>
+                            <Image HorizontalAlignment="Left" Source="/resources/gs/AccountType.png" Height="32" />
+                        </BlockUIContainer>
+                        <Paragraph>You must create at least one account type. Account types are used to separate the
+                        different categories of account, for example "Credit Card", "Utilities", and "Lawn Care". If you don't
+                        want (or need) to separate your account, you still must create one account type since each account
+                        requires a type.</Paragraph>
+                    </ListItem>
+                    <ListItem Margin="30,5,5,5">
+                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="Blue">Create your Companies</Paragraph>
+                        <BlockUIContainer>
+                            <Image HorizontalAlignment="Left" Source="/resources/gs/Company.png" Height="32" />
+                        </BlockUIContainer>
+                        <Paragraph>Accounts are organized by companies. In addition, Identities are associated with companies.</Paragraph>
+                    </ListItem>
+                    <ListItem Margin="30,5,5,5">
+                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="Blue">Create your Accounts</Paragraph>
+                        <BlockUIContainer>
+                            <Image HorizontalAlignment="Left" Source="/resources/gs/Account.png" Height="32" />
+                        </BlockUIContainer>
+                        <Paragraph>Create accounts for each company. An account should reference an individual payable item.
+                        For example, if you have both a VISA and a MasterCard from Wells Fargo, you would have one company
+                        (Wells Fargo) and that company would have two accounts (one for the VISA, one for the MasterCard).</Paragraph>
+                    </ListItem>
+                    <ListItem Margin="30,5,5,5">
+                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="Blue">Create online Identities (if desired)</Paragraph>
+                        <BlockUIContainer>
+                            <Image HorizontalAlignment="Left" Source="/resources/gs/newidentity.png" Height="32" />
+                        </BlockUIContainer>
+                        <Paragraph>You can create online identities for each company, if desired. This will keep your user ID and
+                        password safely encrypted. When you need to use the identity, select it in the list, and click the copy
+                        button (key) to copy the password to the clipboard.</Paragraph>
+                    </ListItem>
+                    <ListItem Margin="30,5,5,5">
+                        <Paragraph FontSize="20" FontWeight="Bold" Foreground="Blue">Create transactions</Paragraph>
+                        <Paragraph>When it is time to pay bills, each payment is a transaction. Select the company and the 
+                        correct account, then hit the '+' key on the numeric keypad, or hit the 'Insert' key.</Paragraph>
+                    </ListItem>
+                </List>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <Button Grid.Row="2" Margin="5" Command="{Binding OkCommand}" IsCancel="True" IsDefault="True" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/resources/checkmark-32.png" Margin="1" Height="16"/>
+                <TextBlock Margin="1,1,3,1" Text="Done"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
