@@ -13,6 +13,7 @@
 			project using WPF
 		</Description>
 		<Copyright>© Copyright 2019-2022 VJK Solutions, LLC. All Rights Reserved.</Copyright>
+		<ApplicationIcon>ledger.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -133,6 +134,10 @@
 		<None Remove="resources\wifi-32.png" />
 		<None Remove="resources\x-32.png" />
 		<None Remove="resources\yin-yang-45.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="ledger.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
