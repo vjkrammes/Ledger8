@@ -137,6 +137,19 @@ public partial class MainViewModel
         }
     }
 
+    private RelayCommand _toggleAutoPayCommand;
+    public ICommand ToggleAutoPayCommand
+    {
+        get
+        {
+            if (_toggleAutoPayCommand is null)
+            {
+                _toggleAutoPayCommand = new(parm => ToggleAutoPayClick(), parm => AlwaysCanExecute());
+            }
+            return _toggleAutoPayCommand;
+        }
+    }
+
     private RelayCommand? _deleteAccountCommand;
     public ICommand DeleteAccountCommand
     {

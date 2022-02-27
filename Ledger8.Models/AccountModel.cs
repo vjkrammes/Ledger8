@@ -72,6 +72,13 @@ public class AccountModel : ModelBase
         set => SetProperty(ref _closedDate, value);
     }
 
+    private bool _isAutoPaid;
+    public bool IsAutoPaid
+    {
+        get => _isAutoPaid;
+        set => SetProperty(ref _isAutoPaid, value);
+    }
+
     private string? _comments;
     public string Comments
     {
@@ -111,6 +118,7 @@ public class AccountModel : ModelBase
         IsPayable = true;
         IsClosed = false;
         ClosedDate = default;
+        IsAutoPaid = false;
         Comments = string.Empty;
         Tag = string.Empty;
         AccountType = null;
@@ -128,6 +136,7 @@ public class AccountModel : ModelBase
         IsPayable = entity.IsPayable,
         IsClosed = entity.IsClosed,
         ClosedDate = entity.ClosedDate,
+        IsAutoPaid = entity.IsAutoPaid,
         Comments = entity.Comments ?? string.Empty,
         Tag = entity.Tag ?? string.Empty,
         AccountType = entity.AccountType!,
@@ -146,6 +155,7 @@ public class AccountModel : ModelBase
         IsPayable = model.IsPayable,
         IsClosed = model.IsClosed,
         ClosedDate = model.ClosedDate,
+        IsAutoPaid = model.IsAutoPaid,
         Comments = model.Comments ?? string.Empty,
         Tag = model.Tag ?? string.Empty,
         AccountType = model.AccountType!,
@@ -163,6 +173,7 @@ public class AccountModel : ModelBase
         IsPayable = IsPayable,
         IsClosed = IsClosed,
         ClosedDate = ClosedDate,
+        IsAutoPaid= IsAutoPaid,
         Comments = Comments ?? string.Empty,
         Tag = Tag ?? string.Empty,
         AccountType = AccountType?.Clone(),

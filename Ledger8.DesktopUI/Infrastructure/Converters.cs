@@ -703,3 +703,27 @@ public sealed class AccountAndClosedToVisibilityConverter : IMultiValueConverter
 
     public object[] ConvertBack(object value, Type[] t, object parm, CultureInfo lang) => throw new NotImplementedException();
 }
+
+// convert from DisplayedAccountModel, bool (IsClosed) and bool (IsAutoPaid) to visibility where it's only visible if model is not null, isclosed = false and isautopaid = true
+
+public sealed class AccountClosedAndAutopaidToVisibilityConverter : IMultiValueConverter
+{
+    public object Convert(object[] values, Type t, object parm, CultureInfo lang)
+    {
+        if (values is null || values.Length != 3 || values.Any(x => x == DependencyProperty.UnsetValue))
+        {
+            return Visibility.Collapsed;
+        }
+        if (values[0] is null || values[0] is not DisplayedAccountModel model)
+        {
+            return Visibility.Collapsed;
+        }
+        if (values[1] is not bool isClosed || values[2] is not bool isAutoPaid)
+        {
+            return Visibility.Collapsed;
+        }
+        return isClosed ? Visibility.Collapsed : isAutoPaid ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    public object[] ConvertBack(object value, Type[] t, object parm, CultureInfo lang) => throw new NotImplementedException();
+}

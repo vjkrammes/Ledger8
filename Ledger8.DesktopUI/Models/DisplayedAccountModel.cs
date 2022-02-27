@@ -52,6 +52,13 @@ public class DisplayedAccountModel : NotifyBase
         set => SetProperty(ref _closedDate, value);
     }
 
+    private bool _isAutoPaid;
+    public bool IsAutoPaid
+    {
+        get => _isAutoPaid;
+        set => SetProperty(ref _isAutoPaid, value);
+    }
+
     private string? _comments;
     public string Comments
     {
@@ -88,6 +95,7 @@ public class DisplayedAccountModel : NotifyBase
         IsPayable = true;
         IsClosed = false;
         ClosedDate = default;
+        IsAutoPaid = false;
         Comments = string.Empty;
         Tag = string.Empty;
         Description = string.Empty;
@@ -102,6 +110,7 @@ public class DisplayedAccountModel : NotifyBase
         IsPayable = model.IsPayable;
         IsClosed = model.IsClosed;
         ClosedDate = model.ClosedDate;
+        IsAutoPaid= model.IsAutoPaid;
         Comments = model.Comments;
         Tag = model.Tag;
         Description = model.Description(password, cypher);

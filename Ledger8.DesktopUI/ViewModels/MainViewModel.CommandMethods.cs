@@ -235,6 +235,30 @@ public partial class MainViewModel
         SetToggle(SelectedAccount.IsClosed);
     }
 
+    private void ToggleAutoPayClick()
+    {
+        if (SelectedAccount is null)
+        {
+            return;
+        }
+        var accountService = _serviceFactory.Create<IAccountService>()!;
+        var account = accountService.Read(SelectedAccount.Id);
+        if (account is null)
+        {
+            PopupManager.Popup("Failed to retrieve Account", Constants.DBE, $"Unable to retrieve the account with the Id {SelectedAccount.Id}",
+                PopupButtons.Ok, PopupImage.Error);
+            return;
+        }
+        account.IsAutoPaid = !account.IsAutoPaid;
+        var result = accountService.Update(account);
+        if (!result.Successful)
+        {
+            PopupManager.Popup("Failed to update Account", Constants.DBE, result.ErrorMessage(), PopupButtons.Ok, PopupImage.Error);
+            return;
+        }
+        SelectedAccount.IsAutoPaid = account.IsAutoPaid;
+    }
+
     private bool DeleteAccountCanClick() => SelectedAccount is not null && SelectedAccount.CanDelete;
 
     private void DeleteAccountClick()

@@ -29,6 +29,8 @@ public class AccountEntity : IIdEntity
     [Required]
     public DateTime ClosedDate { get; set; }
     [Required]
+    public bool IsAutoPaid { get; set; }
+    [Required]
     public string Comments { get; set; }
     [Required, MaxLength(Constants.NameLength)]
     public string Tag { get; set; }
@@ -49,6 +51,7 @@ public class AccountEntity : IIdEntity
         IsPayable = true;
         IsClosed = false;
         ClosedDate = default;
+        IsAutoPaid = false;
         Comments = string.Empty;
         Tag = string.Empty;
         AccountType = null;

@@ -36,8 +36,4 @@
     <ProjectReference Include="..\Ledger8.Common\Ledger8.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dapper\" />
-  </ItemGroup>
-
 </Project>

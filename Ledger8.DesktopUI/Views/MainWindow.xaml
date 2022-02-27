@@ -15,6 +15,7 @@
         <li:CountToEnabledConverter x:Key="EnabledConverter" />
         <li:AccountToDueDateConverter x:Key="DDTConverter" />
         <li:AccountAndClosedToVisibilityConverter x:Key="ClosedAccountConverter" />
+        <li:AccountClosedAndAutopaidToVisibilityConverter x:Key="AutopaidAccountConverter" />
         <li:BoolToForegroundConverter x:Key="ColorConverter" />
         <li:TagsToBorderConverter x:Key="BorderConverter" />
         <li:TagsToThicknessConverter x:Key="BorderThicknessConverter" />
@@ -107,6 +108,9 @@
             </Button>
             <Button Command="{Binding ToggleAccountCommmand}" ToolTip="{Binding ToggleTooltip}" ToolTipService.ShowOnDisabled="True">
                 <Image Source="{Binding ToggleIcon}" />
+            </Button>
+            <Button Command="{Binding ToggleAutoPayCommand}" ToolTip="Toggle AutoPay" ToolTipService.ShowOnDisabled="True">
+                <Image Source="/resources/script-32.png" />
             </Button>
             <Button Command="{Binding DeleteAccountCommand}" ToolTip="Delete the selected Account" ToolTipService.ShowOnDisabled="True">
                 <Image Source="/resources/remove-32.png" />
@@ -357,6 +361,16 @@
                             <MultiBinding Converter="{StaticResource ClosedAccountConverter}">
                                 <Binding Path="SelectedAccount" />
                                 <Binding Path="SelectedAccount.IsClosed" />
+                            </MultiBinding>
+                        </TextBlock.Visibility>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Blue" Text="Account is Auto-paid" IsHitTestVisible="False"
+                               FontSize="36" FontWeight="Bold" Margin="5,0,0,5" Background="Transparent">
+                        <TextBlock.Visibility>
+                            <MultiBinding Converter="{StaticResource AutopaidAccountConverter}">
+                                <Binding Path="SelectedAccount" />
+                                <Binding Path="SelectedAccount.IsClosed" />
+                                <Binding Path="SelectedAccount.IsAutoPaid" />
                             </MultiBinding>
                         </TextBlock.Visibility>
                     </TextBlock>

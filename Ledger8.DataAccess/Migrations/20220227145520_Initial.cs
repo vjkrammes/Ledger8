@@ -110,6 +110,7 @@ public partial class Initial : Migration
                 IsPayable = table.Column<bool>(type: "bit", nullable: false),
                 IsClosed = table.Column<bool>(type: "bit", nullable: false),
                 ClosedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                IsAutoPaid = table.Column<bool>(type: "bit", nullable: false),
                 Comments = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 Tag = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                 AccountNumberId = table.Column<int>(type: "int", nullable: true)

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 using System.Data;
 
-namespace Ledger8.DataAccess.EFCore;
+namespace Ledger8.DataAccess;
 
 public class LedgerContext : DbContext
 {

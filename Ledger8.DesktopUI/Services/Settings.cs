@@ -1,5 +1,5 @@
 ﻿using Ledger8.Common;
-using Ledger8.DataAccess.EFCore;
+using Ledger8.DataAccess;
 using Ledger8.DesktopUI.Enumerations;
 using Ledger8.DesktopUI.Infrastructure;
 using Ledger8.DesktopUI.Interfaces;

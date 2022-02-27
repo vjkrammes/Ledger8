@@ -1,5 +1,5 @@
 ﻿using Ledger8.Common;
-using Ledger8.DataAccess.EFCore;
+using Ledger8.DataAccess;
 
 using Microsoft.Extensions.DependencyInjection;
 

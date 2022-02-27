@@ -1,5 +1,6 @@
 ﻿using Ledger8.Common;
 using Ledger8.Common.Interfaces;
+using Ledger8.DataAccess;
 using Ledger8.DataAccess.EFCore;
 using Ledger8.DataAccess.Entities;
 using Ledger8.DataAccess.Interfaces;
